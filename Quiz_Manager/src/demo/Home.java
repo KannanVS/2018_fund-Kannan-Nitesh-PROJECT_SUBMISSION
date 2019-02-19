@@ -17,7 +17,8 @@ public class Home extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
+	 * This is the Home page. 
+	 * It has the Login for Admin and Student.
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -44,16 +45,17 @@ public class Home extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Welcome to Quiz Manager");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 18));
 		lblNewLabel.setBounds(100, 11, 293, 22);
+		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 18));
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Select a category");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		lblNewLabel_1.setBounds(130, 44, 178, 22);
+		lblNewLabel_1.setFont(new Font("Times New Roman", Font.BOLD, 15));
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnStudent = new JButton("Student");
+		btnStudent.setBounds(117, 165, 130, 23);
 		btnStudent.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new Student();
@@ -61,10 +63,10 @@ public class Home extends JFrame {
 			}
 		});
 		btnStudent.setFont(new Font("Verdana", Font.ITALIC, 14));
-		btnStudent.setBounds(117, 165, 130, 23);
 		contentPane.add(btnStudent);
 		
 		JButton btnNewButton = new JButton("Admin");
+		btnNewButton.setBounds(117, 103, 130, 23);
 		btnNewButton.setFont(new Font("Verdana", Font.ITALIC, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -72,7 +74,6 @@ public class Home extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(117, 105, 130, 23);
 		contentPane.add(btnNewButton);
 	}
 

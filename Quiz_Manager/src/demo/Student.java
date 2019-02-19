@@ -6,12 +6,26 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import fr.epita.services.Configuration;
+
 import javax.swing.JComboBox;
+import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.awt.event.ActionEvent;
 
 public class Student extends JFrame {
 
@@ -102,11 +116,78 @@ public class Student extends JFrame {
 		textField_1.setColumns(10);
 		
 		JButton btnLogin = new JButton("Login");
+		btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PreparedStatement stmt = null;
+				Connection connection = null;
+				try {
+					connection = getConnection();
+					stmt = connection.prepareStatement("select * from students where username=? and password=?");
+					stmt.setString(1, textField.getText());
+					stmt.setString(2, passwordField.getText());
+					ResultSet res=stmt.executeQuery();
+									
+					if(res.next()!=false)
+					{
+						new Student_In();
+						setVisible(false);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Username or Password is Wrong");
+					}
+					
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				finally {
+					try {
+						stmt.close();
+						connection.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+				
+			
+				
+			}
+		});
 		btnLogin.setBounds(56, 173, 89, 23);
 		contentPane.add(btnLogin);
 		
+		
+		
+		
 		JButton btnSignUp = new JButton("Sign Up");
+		btnSignUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PreparedStatement stmt = null;
+				Connection connection = null;
+				try {
+					connection = getConnection();
+					stmt = connection.prepareStatement("INSERT INTO students (Name,Username,Password) VALUES ('"+textField_2.getText()+"','"+textField_1.getText()+"','"+passwordField_1.getText()+"') ");
+					stmt.execute();
+					JOptionPane.showMessageDialog(null, "Detailed Added");
+					
+					
+				}catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+		});
 		btnSignUp.setBounds(287, 211, 89, 23);
 		contentPane.add(btnSignUp);
+	}
+	private Connection getConnection() throws SQLException, FileNotFoundException, IOException {
+		Configuration config = Configuration.getInstance();
+		String url = config.getPropertyValue("jdbc.url");
+		String username = config.getPropertyValue("jdbc.username");
+		String password = config.getPropertyValue("jdbc.password");
+		
+		return DriverManager.getConnection(url, username, password);
 	}
 }
