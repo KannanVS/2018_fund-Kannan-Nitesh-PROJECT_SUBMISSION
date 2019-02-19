@@ -10,13 +10,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import demo.Update;
 import fr.epita.datamodel.Question;
 import fr.epita.services.Configuration;
 
 public class QuestionJDBCDAO {
 
-	private static final String INSERT_QUERY = "INSERT INTO QUESTIONS (QUESTION,DIFFICULTY) VALUES (?, ?)";
-	private static final String UPDATE_QUERY = "UPDATE QUESTIONS SET QUESTION=?,DIFFICULTY=? WHERE ID=?";
+	private static final String INSERT_QUERY = "INSERT INTO QUESTIONS (QUESTION,DIFFICULTY,TOPICS) VALUES (?, ?, ?)";
+	private static final String UPDATE_QUERY = "UPDATE QUESTIONS SET QUESTION=?,DIFFICULTY=?, TOPICS=? WHERE ID=?";
 	private static final String DELETE_QUERY = "DELETE QUESTIONS WHERE ID=?";
 	private static final String SEARCH_QUERY = "SELECT QUESTION,ID,DIFFICULTY FROM QUESTIONS WHERE (? IS NOT NULL AND QUESTION LIKE ?) AND (? IS NOT NULL  AND DIFFICULTY = ?)";
 	
@@ -29,6 +30,7 @@ public class QuestionJDBCDAO {
 					.prepareStatement(INSERT_QUERY);
 			stmt.setString(1, question.getQuestion());
 			stmt.setInt(2, question.getDifficulty());
+			stmt.setString(3, question.getTopics());
 			stmt.execute();
 			stmt.close();
 			connection.close();
@@ -41,9 +43,12 @@ public class QuestionJDBCDAO {
 			Connection connection = getConnection();
 			PreparedStatement stmt = connection
 					.prepareStatement(UPDATE_QUERY);
+			Update u = new Update();
 			stmt.setString(1, question.getQuestion());
 			stmt.setInt(2, question.getDifficulty());
-			stmt.setInt(3, question.getId());
+			stmt.setString(3, question.getTopics());
+			stmt.setInt(4, question.getId());
+			System.out.println(u.id);
 			stmt.execute();
 			stmt.close();
 			connection.close();

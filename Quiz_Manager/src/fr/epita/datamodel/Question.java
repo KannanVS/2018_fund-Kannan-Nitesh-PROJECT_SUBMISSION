@@ -10,11 +10,11 @@ public class Question {
 
 	private String question;
 
-	private String[] topics;
+	private String topics;
 
 	private int difficulty;
 
-	public Question(String question, String[] topics, int difficulty) {
+	public Question(String question, int difficulty, String topics) {
 		
 		this.question = question;
 		this.topics = topics;
@@ -38,11 +38,11 @@ public class Question {
 		this.question = question;
 	}
 
-	public String[] getTopics() {
+	public String getTopics() {
 		return topics;
 	}
 
-	public void setTopics(String[] topics) {
+	public void setTopics(String topics) {
 		this.topics = topics;
 	}
 
@@ -58,13 +58,14 @@ public class Question {
 		return id;
 	}
 
-	public void setId(int id) {
+	public int setId(int id) {
 		this.id = id;
+		return id;
 	}
 
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", question=" + question + ", topics=" + Arrays.toString(topics) + ", difficulty="
+		return "Question [id=" + id + ", question=" + question + ", topics=" +topics + ", difficulty="
 				+ difficulty + "]";
 	}
 
