@@ -9,4 +9,6 @@ The default Login values for the Admin are :
       Username : 'Admin'
       Password : 'Admin@123'
       
+Compile the file Home which is located in the 'Demo' package of 'src' to run the code.
+      
 Merci.
