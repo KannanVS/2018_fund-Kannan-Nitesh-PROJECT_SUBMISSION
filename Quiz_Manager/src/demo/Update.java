@@ -31,26 +31,10 @@ public class Update extends JFrame {
 	private JTextField textField_3;
 
 	/**
-	 * Launch the application.
-	 */
-	public int id;
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Update frame = new Update();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public Update() {
+		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 662, 429);
 		contentPane = new JPanel();

@@ -31,21 +31,6 @@ public class Admin extends JFrame {
 	private JTextField textField;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
-	/**public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Admin frame = new Admin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}**/
 
 	/**
 	 * Create the frame.

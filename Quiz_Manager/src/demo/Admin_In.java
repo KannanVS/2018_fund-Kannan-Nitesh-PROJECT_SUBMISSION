@@ -17,22 +17,6 @@ public class Admin_In extends JFrame {
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Admin_In frame = new Admin_In();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 */
 	public Admin_In() {
@@ -63,6 +47,8 @@ public class Admin_In extends JFrame {
 		JButton btnNewButton_1 = new JButton("Update");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				new Update();
+				setVisible(false);
 				
 			}
 		});
@@ -70,11 +56,13 @@ public class Admin_In extends JFrame {
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Delete");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Delete();
+				setVisible(false);
+			}
+		});
 		btnNewButton_2.setBounds(172, 156, 89, 23);
 		contentPane.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("Search");
-		btnNewButton_3.setBounds(172, 213, 89, 23);
-		contentPane.add(btnNewButton_3);
 	}
 }

@@ -7,9 +7,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import demo.Delete;
 import demo.Update;
 import fr.epita.datamodel.Question;
 import fr.epita.services.Configuration;
@@ -20,7 +22,7 @@ public class QuestionJDBCDAO {
 	private static final String UPDATE_QUERY = "UPDATE QUESTIONS SET QUESTION=?,DIFFICULTY=?, TOPICS=? WHERE ID=?";
 	private static final String DELETE_QUERY = "DELETE QUESTIONS WHERE ID=?";
 	private static final String SEARCH_QUERY = "SELECT QUESTION,ID,DIFFICULTY FROM QUESTIONS WHERE (? IS NOT NULL AND QUESTION LIKE ?) AND (? IS NOT NULL  AND DIFFICULTY = ?)";
-	
+	private static final String AINSERT_QUERY = "INSERT INTO ANSWERS (OPTA,OPTB,OPTC,OPTD,CA) VALUES (?, ?, ?,?,?)";
 	
 	
 	public void create(Question question) {
@@ -38,6 +40,34 @@ public class QuestionJDBCDAO {
 			e.printStackTrace();
 		}
 	}
+	public int count;
+	public int Acreate(String a,String b, String c, String d, String ca) {
+		try {
+			Connection connection = getConnection();
+			PreparedStatement stmt = connection
+					.prepareStatement(AINSERT_QUERY);
+			stmt.setString(1, a);
+			stmt.setString(2, b);
+			stmt.setString(3, c);
+			stmt.setString(4, d);
+			stmt.setString(5, ca);
+			stmt.execute();
+			stmt.close();
+		
+			String query = "select count(*) AS rowcount from QUESTIONS";
+			Statement st = connection.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			//System.out.println(rs);
+			while (rs.next())
+		      {
+		        count = rs.getInt("rowcount");
+		      }
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return count;
+	}
 	public void update(Question question) {
 		try {
 			Connection connection = getConnection();
@@ -48,7 +78,6 @@ public class QuestionJDBCDAO {
 			stmt.setInt(2, question.getDifficulty());
 			stmt.setString(3, question.getTopics());
 			stmt.setInt(4, question.getId());
-			System.out.println(u.id);
 			stmt.execute();
 			stmt.close();
 			connection.close();
@@ -56,13 +85,13 @@ public class QuestionJDBCDAO {
 			e.printStackTrace();
 		}
 	}
-	public void delete(Question question) {
+	public void delete(int i) {
 		try {
+			Delete d= new Delete();
 			Connection connection = getConnection();
 			PreparedStatement stmt = connection
 					.prepareStatement(DELETE_QUERY);
-			stmt.setInt(1, question.getId());
-			
+			stmt.setInt(1, i);
 			stmt.execute();
 			stmt.close();
 			connection.close();
