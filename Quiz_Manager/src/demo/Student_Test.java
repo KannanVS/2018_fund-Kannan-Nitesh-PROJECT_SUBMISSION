@@ -215,25 +215,6 @@ public class Student_Test extends JFrame {
 			btnNewButton_3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					JOptionPane.showMessageDialog(null, "The Quiz is Completed Successfully \n The Mark is "+count);
-					try {
-						Connection connection = getConnection();
-						Statement st = connection.createStatement();
-						 ResultSet rs = st.executeQuery("select ID from Students where username='"+uname+"'");
-						 int uid = 0;
-						 while(rs.next())
-							  
-							{
-							 
-							    uid = rs.getInt("ID");
-							}
-						 System.out.println(uid);
-						
-						PreparedStatement stmt = connection.prepareStatement("UPDATE Students SET Mark="+count+"WHERE ID="+uid+";");
-						
-						
-					}catch (Exception e1) {
-						e1.printStackTrace();
-					}
 					new Home();
 					setVisible(false);
 					

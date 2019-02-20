@@ -66,5 +66,15 @@ public class Admin_In extends JFrame {
 		});
 		btnNewButton_2.setBounds(172, 156, 89, 23);
 		contentPane.add(btnNewButton_2);
+		
+		JButton btnNewButton_3 = new JButton("Home");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Home();
+				setVisible(false);
+			}
+		});
+		btnNewButton_3.setBounds(172, 208, 89, 23);
+		contentPane.add(btnNewButton_3);
 	}
 }

@@ -180,11 +180,11 @@ public class Student extends JFrame {
 		contentPane.add(btnNewButton);
 	}
 	private Connection getConnection() throws SQLException, FileNotFoundException, IOException {
-		Configuration config = Configuration.getInstance();
-		String url = config.getPropertyValue("jdbc.url");
-		String username = config.getPropertyValue("jdbc.username");
-		String password = config.getPropertyValue("jdbc.password");
-		
-		return DriverManager.getConnection(url, username, password);
-	}
+		//	Configuration config = Configuration.getInstance();
+			String url = "jdbc:h2:tcp://localhost//C:/db/h2DS;create=true";
+			String username = "sa";
+			String password = "";
+			
+			return DriverManager.getConnection(url, username, password);
+		}
 }
