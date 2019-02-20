@@ -59,6 +59,16 @@ public int id;
 		});
 		btnNewButton.setBounds(144, 140, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Back");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Admin_In();
+				setVisible(false);
+			}
+		});
+		btnNewButton_1.setBounds(278, 140, 89, 23);
+		contentPane.add(btnNewButton_1);
 	}
 
 }

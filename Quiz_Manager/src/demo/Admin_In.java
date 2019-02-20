@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class Admin_In extends JFrame {
 
@@ -29,7 +30,8 @@ public class Admin_In extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Select the operation to be performed");
-		lblNewLabel.setBounds(123, 11, 254, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblNewLabel.setBounds(96, 11, 307, 14);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Create");

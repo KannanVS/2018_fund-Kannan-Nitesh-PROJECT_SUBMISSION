@@ -113,7 +113,8 @@ public class Student extends JFrame {
 									
 					if(res.next()!=false)
 					{
-						new Student_In();
+						String uname=textField.getText();
+						new Student_In(uname);
 						setVisible(false);
 					}
 					else {
@@ -165,6 +166,18 @@ public class Student extends JFrame {
 		});
 		btnSignUp.setBounds(287, 211, 89, 23);
 		contentPane.add(btnSignUp);
+		
+		JButton btnNewButton = new JButton("Back");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				new Home();
+				setVisible(false);
+			}
+			
+		});
+		btnNewButton.setBounds(143, 227, 89, 23);
+		contentPane.add(btnNewButton);
 	}
 	private Connection getConnection() throws SQLException, FileNotFoundException, IOException {
 		Configuration config = Configuration.getInstance();

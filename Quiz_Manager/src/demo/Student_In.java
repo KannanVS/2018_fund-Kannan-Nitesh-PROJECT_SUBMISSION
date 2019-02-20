@@ -18,26 +18,11 @@ public class Student_In extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Student_In frame = new Student_In();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
-	public Student_In() {
+	public Student_In(String uname) {
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 451, 330);
@@ -85,7 +70,7 @@ public class Student_In extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String topic = textField.getText();
 				int diff = Integer.parseInt(textField_1.getText());
-				new Student_Question(topic,diff);
+				new Student_Test(topic,diff,uname);
 				setVisible(false);
 			}
 		});

@@ -24,6 +24,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class Admin extends JFrame {
 
@@ -45,15 +46,18 @@ public class Admin extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Please enter the username and password for login");
-		lblNewLabel.setBounds(84, 11, 280, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.ITALIC, 16));
+		lblNewLabel.setBounds(23, 11, 411, 30);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Username");
-		lblNewLabel_1.setBounds(44, 75, 77, 14);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(44, 72, 95, 17);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Password");
-		lblNewLabel_2.setBounds(44, 128, 77, 14);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_2.setBounds(44, 128, 95, 20);
 		contentPane.add(lblNewLabel_2);
 		
 		textField = new JTextField();
@@ -106,13 +110,23 @@ public class Admin extends JFrame {
 		});
 		btnNewButton.setBounds(127, 181, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Back");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Home();
+				setVisible(false);
+			}
+		});
+		btnNewButton_1.setBounds(275, 181, 89, 23);
+		contentPane.add(btnNewButton_1);
 	}
 	
 	private Connection getConnection() throws SQLException, FileNotFoundException, IOException {
-		Configuration config = Configuration.getInstance();
-		String url = config.getPropertyValue("jdbc.url");
-		String username = config.getPropertyValue("jdbc.username");
-		String password = config.getPropertyValue("jdbc.password");
+	//	Configuration config = Configuration.getInstance();
+		String url = "jdbc:h2:tcp://localhost//C:/db/h2DS;create=true";
+		String username = "sa";
+		String password = "";
 		
 		return DriverManager.getConnection(url, username, password);
 	}

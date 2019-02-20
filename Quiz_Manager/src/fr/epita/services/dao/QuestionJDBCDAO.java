@@ -21,6 +21,7 @@ public class QuestionJDBCDAO {
 	private static final String INSERT_QUERY = "INSERT INTO QUESTIONS (QUESTION,DIFFICULTY,TOPICS) VALUES (?, ?, ?)";
 	private static final String UPDATE_QUERY = "UPDATE QUESTIONS SET QUESTION=?,DIFFICULTY=?, TOPICS=? WHERE ID=?";
 	private static final String DELETE_QUERY = "DELETE QUESTIONS WHERE ID=?";
+	private static final String DELETE_QUERY_2 = "DELETE ANSWERS WHERE ID=?";
 	private static final String SEARCH_QUERY = "SELECT QUESTION,ID,DIFFICULTY FROM QUESTIONS WHERE (? IS NOT NULL AND QUESTION LIKE ?) AND (? IS NOT NULL  AND DIFFICULTY = ?)";
 	private static final String AINSERT_QUERY = "INSERT INTO ANSWERS (OPTA,OPTB,OPTC,OPTD,CA) VALUES (?, ?, ?,?,?)";
 	
@@ -87,13 +88,20 @@ public class QuestionJDBCDAO {
 	}
 	public void delete(int i) {
 		try {
-			Delete d= new Delete();
+			//Delete d= new Delete();
 			Connection connection = getConnection();
 			PreparedStatement stmt = connection
 					.prepareStatement(DELETE_QUERY);
 			stmt.setInt(1, i);
 			stmt.execute();
 			stmt.close();
+			
+			
+			PreparedStatement stmt1 = connection
+					.prepareStatement(DELETE_QUERY_2);
+			stmt1.setInt(1, i);
+			stmt1.execute();
+			stmt1.close();
 			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -130,12 +138,11 @@ public class QuestionJDBCDAO {
 	}
 
 	private Connection getConnection() throws SQLException, FileNotFoundException, IOException {
-		Configuration config = Configuration.getInstance();
-		String url = config.getPropertyValue("jdbc.url");
-		String username = config.getPropertyValue("jdbc.username");
-		String password = config.getPropertyValue("jdbc.password");
-		
-		return DriverManager.getConnection(url, username, password);
-	}
-
+		//	Configuration config = Configuration.getInstance();
+			String url = "jdbc:h2:tcp://localhost//C:/db/h2DS;create=true";
+			String username = "sa";
+			String password = "";
+			
+			return DriverManager.getConnection(url, username, password);
+		}
 }

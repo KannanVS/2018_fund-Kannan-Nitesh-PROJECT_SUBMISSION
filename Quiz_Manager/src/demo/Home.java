@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -26,8 +28,10 @@ public class Home extends JFrame {
 				try {
 					Home frame = new Home();
 					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+				} catch (Throwable t) {
+					  JOptionPane.showMessageDialog(
+						        null, t.getClass().getSimpleName() + ": " + t.getMessage());
+						    throw t; 
 				}
 			}
 		});
@@ -37,6 +41,7 @@ public class Home extends JFrame {
 	 * Create the frame.
 	 */
 	public Home() {
+		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

@@ -11,6 +11,7 @@ import fr.epita.datamodel.Question;
 import fr.epita.services.dao.QuestionJDBCDAO;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -103,12 +104,23 @@ public class Update extends JFrame {
 					e1.printStackTrace();
 				}
 				
-				
+				JOptionPane.showMessageDialog(null, "The Question is Updated Successfully");
 				
 			}
 		});
 		btnNewButton.setBounds(166, 246, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Back");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new Admin_In();
+				setVisible(false);
+			}
+			
+		});
+		btnNewButton_1.setBounds(336, 246, 89, 23);
+		contentPane.add(btnNewButton_1);
 		
 	}
 	private Connection getConnection() throws SQLException, FileNotFoundException, IOException {

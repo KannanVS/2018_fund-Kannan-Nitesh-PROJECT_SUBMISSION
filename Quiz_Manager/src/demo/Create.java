@@ -138,7 +138,7 @@ public class Create extends JFrame {
 		textField_6.setColumns(10);
 		
 		JLabel lblNewLabel_9 = new JLabel("Correct Answer");
-		lblNewLabel_9.setBounds(32, 477, 89, 14);
+		lblNewLabel_9.setBounds(32, 477, 133, 14);
 		contentPane.add(lblNewLabel_9);
 		
 		textField_7 = new JTextField();
@@ -149,5 +149,15 @@ public class Create extends JFrame {
 		JLabel lblNewLabel_10 = new JLabel("Give the topic as 'Java' or 'Maths'");
 		lblNewLabel_10.setBounds(152, 97, 236, 31);
 		contentPane.add(lblNewLabel_10);
+		
+		JButton btnNewButton_1 = new JButton("Back");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new Admin_In();
+				setVisible(false);
+			}
+		});
+		btnNewButton_1.setBounds(319, 550, 89, 23);
+		contentPane.add(btnNewButton_1);
 	}
 }
